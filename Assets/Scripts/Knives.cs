@@ -56,9 +56,9 @@ public class Knives : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             isGrounded = true;
-            knife.layer = 11;
-            spc.enabled = false;
-            bx.enabled = true;
+            //knife.layer = 11;
+            //spc.enabled = false;
+            //bx.enabled = true;
 
             Suspension();
             wall = false;
@@ -150,7 +150,7 @@ public class Knives : MonoBehaviour
     private Vector3 CheckForColliders()
     {
 
-        Collider[] collider = Physics.OverlapSphere(transform.position, 10f);
+        Collider[] collider = Physics.OverlapSphere(transform.position, 15f);
         if (collider.Length > 0)
         {
             foreach (Collider c in collider)
@@ -161,7 +161,7 @@ public class Knives : MonoBehaviour
                 if (closestTarget == 0 || distance <= closestTarget)
                 {
 
-                    if (CheckLayerInMask(knifeMask, c.gameObject.layer))
+                   /* if (CheckLayerInMask(knifeMask, c.gameObject.layer))
                     {
                         Knives targetKnife = c.gameObject.GetComponent<Knives>();
                         if (targetKnife.isGrounded)
@@ -177,7 +177,7 @@ public class Knives : MonoBehaviour
                         }
 
                     }
-                    else if (CheckLayerInMask(enemyMask, c.gameObject.layer))
+                    else*/ if (CheckLayerInMask(enemyMask, c.gameObject.layer))
                     {
                         Debug.Log("entro enemigo");
                         closestTarget = distance;
@@ -186,11 +186,11 @@ public class Knives : MonoBehaviour
                         Debug.Log(targetposition);
 
                     }
-                    else
+                    /*else
                     {
                         Vector3 defaultToFloor = new(-1, -2, 0);
                         targetposition = transform.position + defaultToFloor;
-                    }
+                    }*/
                 }
             }
 

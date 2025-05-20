@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] GameObject pausePanel;
+    
     void Start()
     {
         
@@ -16,7 +16,8 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            BacktoMainMenu();
+            pausePanel.SetActive(true);
+            Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -25,11 +26,16 @@ public class UIManager : MonoBehaviour
 
     public void PlayGame()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         Debug.Log("play");
         SceneManager.LoadScene("Game");
+        Time.timeScale = 1;
     }
     public void Credits()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         Debug.Log("credits" );
         SceneManager.LoadScene("Credits");
 
@@ -48,5 +54,11 @@ public class UIManager : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        Debug.Log("play");
+        pausePanel.SetActive(false);
     }
 }

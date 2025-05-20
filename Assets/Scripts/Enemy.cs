@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject enemy;
     [SerializeField] Image enemyLifeBar;
     [SerializeField] float enemyMovementSpeed;
+    [SerializeField] UIManager UI;
 
  
     void Update()
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour
         transform.LookAt(target.transform);
         if (enemyLifeBar.fillAmount <= 0)
         {
+            UI.Credits();
            Destroy(enemy);
         }
         
