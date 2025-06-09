@@ -177,7 +177,7 @@ public class Knives : MonoBehaviour
                         }
 
                     }
-                    else*/ if (CheckLayerInMask(enemyMask, c.gameObject.layer))
+                    else  if (CheckLayerInMask(enemyMask, c.gameObject.layer))
                     {
                         Debug.Log("entro enemigo");
                         closestTarget = distance;

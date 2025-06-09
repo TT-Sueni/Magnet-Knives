@@ -1,89 +1,69 @@
 
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 public class BounceBehavior : MonoBehaviour
-{/*
-    [SerializeField] LayerMask bounceableMask;
-    float distance;
-    float closestTarget = 0;
-    GameObject target;
-    Shooting shooting;
-    Vector3 targetposition;
-    void Start()
-    {
-
-    }
-
-
+{
+    /*
+    [SerializeField] GameObject knife;
+    [SerializeField] float range = 20;
+    [SerializeField] LayerMask enemyLayer;
+    List<float> enemiesinRange = new List<float>();
+    float currentKnifeDistance;
+    Vector3 tpTarget;
+    bool onTarget;
+    Vector3 closesttargetPosition;
+    float closesttarget;
     void Update()
     {
         
-      
 
     }
     private void OnCollisionEnter(Collision collision)
     {
-      if (Knives.CheckLayerInMask(bounceableMask, collision.gameObject.layer))
+        if (Knives.CheckLayerInMask(enemyLayer, collision.gameObject.layer))
         {
+            Collider[] collider = Physics.OverlapSphere(collision.transform.position, range, enemyLayer);
 
-            transform.position = Vector3.MoveTowards(transform.position, CheckForColliders(), 10 * Time.deltaTime);
 
-        }
 
-    }
-    private Vector3 CheckForColliders()
-    {
-        Collider[] collider = Physics.OverlapSphere(transform.position, 19f);
-        foreach (Collider c in collider)
-        {
-            distance = Vector3.Distance(transform.position, c.transform.position);
-            GameObject cc = c.GetComponent<GameObject>();
 
-            if (closestTarget == 0 || distance <= closestTarget)
+            if (collider.Length > 0)
             {
 
-                if (Knives.CheckLayerInMask(knifeMask, c.gameObject.layer))
+                foreach (Collider c in collider)
                 {
-                    Knives targetKnife = c.gameObject.GetComponent<Knives>();
-                    if (targetKnife.isGrounded)
+
+                    currentKnifeDistance = Vector3.Distance(c.transform.position, player.transform.position);
+
+                    knivesinRange.Add(currentKnifeDistance);
+
+                }
+                closesttarget = knivesinRange.Min();
+                foreach (Collider c in collider)
+                {
+
+
+                    if (closesttarget == Vector3.Distance(c.transform.position, player.transform.position))
                     {
-                        Debug.Log("entro");
-
-                        closestTarget = distance;
-                        target = c.gameObject;
-                        c.GetComponent<Enemy>();
-                        Vector3 targetposition = cc.transform.position;
 
 
+
+                        closesttargetPosition = c.transform.position;
+
+                        player.transform.position = closesttargetPosition;
                     }
 
                 }
-                else if (CheckLayerInMask(enemyMask, c.gameObject.layer))
-                {
-                    Debug.Log("entro enemigo");
-                    closestTarget = distance;
-
-
-                    target = cc;
-                    targetposition = c.GetComponent<Enemy>().transform.position;
-                    //Debug.Log(targetposition);
-
-                }
-
+                knivesinRange.Clear();
 
 
 
             }
 
-
-
-
-
         }
-        //Debug.Log(target);
-        return targetposition;
-
     }
     */
 }
